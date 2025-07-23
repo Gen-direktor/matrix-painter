@@ -1,0 +1,157 @@
+:root {
+    --matrix-green: #00ff00;
+    --matrix-dark: #00100d;
+    --matrix-glow: rgba(0, 255, 0, 0.1);
+    --hud-speed: 3s;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #000;
+    font-family: 'Source Code Pro', monospace;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.matrix-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+}
+
+#mainCanvas {
+    display: block;
+    background: #000;
+    cursor: crosshair;
+    touch-action: none;
+}
+
+.controls-panel {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 16, 13, 0.9);
+    padding: 15px 25px;
+    border: 1px solid var(--matrix-green);
+    border-radius: 8px;
+    backdrop-filter: blur(3px);
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.2);
+}
+
+.tool-group {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.tool-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--matrix-green);
+}
+
+.matrix-btn {
+    background: #002218;
+    border: 1px solid var(--matrix-green);
+    color: var(--matrix-green);
+    padding: 8px 15px;
+    cursor: pointer;
+    transition: all 0.3s;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.matrix-btn:hover {
+    background: #003322;
+    box-shadow: 0 0 10px var(--matrix-green);
+}
+
+input[type="color"] {
+    width: 40px;
+    height: 40px;
+    border: 2px solid var(--matrix-green);
+    border-radius: 50%;
+    background: #00100d;
+    cursor: pointer;
+}
+
+input[type="range"] {
+    width: 120px;
+    background: linear-gradient(
+        to right, 
+        #002218 0%, 
+        var(--matrix-green) 50%, 
+        #002218 100%
+    );
+    height: 3px;
+    cursor: pointer;
+}
+
+.hud-effects {
+    pointer-events: none;
+}
+
+.scanline {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        to bottom,
+        transparent 49%,
+        var(--matrix-glow) 50%,
+        transparent 51%
+    );
+    background-size: 100% 6px;
+    animation: scan var(--hud-speed) linear infinite;
+    opacity: 0.7;
+}
+
+.glow-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 50% 50%, 
+            rgba(0, 255, 0, 0.05) 0%, 
+            transparent 60%),
+        repeating-linear-gradient(
+            45deg,
+            rgba(0, 255, 0, 0.03) 0px,
+            rgba(0, 255, 0, 0.03) 1px,
+            transparent 1px,
+            transparent 5px
+        );
+}
+
+@keyframes scan {
+    from { background-position: 0 0; }
+    to { background-position: 0 100%; }
+}
+
+@media (max-width: 768px) {
+    .controls-panel {
+        bottom: 10px;
+        padding: 10px 15px;
+    }
+    
+    .tool-group {
+        gap: 10px;
+    }
+    
+    .matrix-btn span:not(.icon) {
+        display: none;
+    }
+}

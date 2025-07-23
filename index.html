@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MATRIX PAINTER v4.2</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="matrix-container">
+        <canvas id="mainCanvas"></canvas>
+        
+        <div class="controls-panel">
+            <div class="tool-group">
+                <input type="color" id="colorPicker" value="#00ff00" title="Выбор цвета">
+                <div class="tool-item">
+                    <label for="brushSize">Размер:</label>
+                    <input type="range" id="brushSize" min="1" max="50" value="5">
+                    <span id="brushSizeValue">5px</span>
+                </div>
+                <button id="clearBtn" class="matrix-btn">
+                    <span class="icon">⟳</span>
+                    Очистить
+                </button>
+                <button id="undoBtn" class="matrix-btn" title="Ctrl+Z">
+                    <span class="icon">↺</span>
+                    Отмена
+                </button>
+            </div>
+        </div>
+
+        <div class="hud-effects">
+            <div class="scanline"></div>
+            <div class="glow-overlay"></div>
+        </div>
+    </div>
+
+    <script src="scripts/app.js"></script>
+</body>
+</html>
